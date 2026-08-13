@@ -1,8 +1,8 @@
 use std::fs;
+use std::path::Path;
 
-
-pub fn display_tree() {
-    let local_dir = fs::read_dir(".").unwrap();
+pub fn display_tree(path: &Path) {
+    let local_dir = fs::read_dir(path).unwrap();
 
     let mut dirs_count = 0;
     let mut files_count = 0;
