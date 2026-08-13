@@ -4,26 +4,33 @@ use std::path::Path;
 pub fn display_tree(path: &Path) {
     let local_dir = fs::read_dir(path).unwrap();
 
-    let mut dirs_count = 0;
-    let mut files_count = 0;
+    let mut dirs = Vec::new();
+    let mut files = Vec::new();
 
     println!(".");
 
-    for value in local_dir{
+    for value in local_dir {
         let value = value.unwrap();
         let file_name = value.file_name();
         let file_type = value.file_type().unwrap();
 
-        print!("├──");
-
-        if file_type.is_dir(){
-            dirs_count += 1;
-            println!("📁 {}/", file_name.display());
+        if file_type.is_dir() {
+            dirs.push(file_name);
         } else {
-            files_count += 1;
-            println!("📄 {}", file_name.display());
+            files.push(file_name);
         }
     }
 
-    println!("└── {} 📁  |  {} 📄", dirs_count, files_count);
+    for dir in &dirs {
+        print!("├──");
+        println!("📁 {}/", dir.display());
+    }
+source "$HOME/.cargo/env"
+
+    for file in &files {
+        print!("├──");
+        println!("📄 {}", file.display());
+    }
+
+    println!("└── {} 📁  |  {} 📄", dirs.len(), files.len());
 }
