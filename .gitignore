@@ -1,0 +1,39 @@
+# >>> Скомпилированные файлы и артефакты сборки Cargo <<<
+/target/
+**/*.rs.bk
+*.rmeta
+*.rlib
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+
+# Локальные токены и конфиги Cargo (могут содержать ключи к реестрам)
+.cargo/config.toml
+.cargo/credentials.toml
+
+# >>> Профилирование, бенчмарки и покрытие кода (Coverage) <<<
+*.profraw
+*.profdata
+lcov.info
+coverage/
+tarpaulin-report.*
+
+# >>> Медиа <<<
+media/
+
+# >>> База Данных <<<
+*.sqlite3
+
+# >>> Файлы логов <<<
+*.log
+
+# >>> .директории и IDE (VSCode, RustRover, CLion) <<<
+.vscode/
+*.code-workspace
+.idea/
+.rs-analyzer
+
+# >>> .файлы и секреты <<<
+.env
