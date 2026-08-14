@@ -2,12 +2,19 @@ use std::fs;
 use std::path::Path;
 
 pub fn display_tree(path: &Path) {
+    println!("{}", path.display());
+
+    let (total_dirs, total_files) = tree_recursive(path, "");
+
+    println!("└── {} 📁  |  {} 📄", total_dirs, total_files);
+
+}
+
+pub fn tree_recursive(path: &Path, indent: &str) -> (usize, usize) {
     let local_dir = fs::read_dir(path).unwrap();
 
     let mut dirs = Vec::new();
     let mut files = Vec::new();
-
-    println!("{}", path.display());
 
     for value in local_dir {
         let value = value.unwrap();
@@ -21,15 +28,24 @@ pub fn display_tree(path: &Path) {
         }
     }
 
+    let mut dir_count = dirs.len();
+    let mut file_count = files.len();
+
     for dir in &dirs {
-        print!("├──");
-        println!("📁 {}/", dir.display());
+        println!("{}├── 📁 {}/", indent, dir.display());
+
+        let sub_path = path.join(dir);
+        let new_indent = format!("{}│   ", indent);
+
+        let (sub_dirs, sub_files) = tree_recursive(&sub_path, &new_indent);
+
+        dir_count += sub_dirs;
+        file_count += sub_files;
     }
 
     for file in &files {
-        print!("├──");
-        println!("📄 {}", file.display());
+        println!("{}├── 📄 {}", indent, file.display());
     }
 
-    println!("└── {} 📁  |  {} 📄", dirs.len(), files.len());
+    (dir_count, file_count)
 }
