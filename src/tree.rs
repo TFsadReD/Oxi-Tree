@@ -7,7 +7,7 @@ pub fn display_tree(path: &Path) {
     let mut dirs = Vec::new();
     let mut files = Vec::new();
 
-    println!(".");
+    println!("{}", path.display());
 
     for value in local_dir {
         let value = value.unwrap();
