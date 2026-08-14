@@ -25,7 +25,6 @@ pub fn display_tree(path: &Path) {
         print!("├──");
         println!("📁 {}/", dir.display());
     }
-source "$HOME/.cargo/env"
 
     for file in &files {
         print!("├──");
