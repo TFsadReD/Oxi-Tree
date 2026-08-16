@@ -1,6 +1,11 @@
+//! # Консольная утилита `tree` на языке Rust
+//!
+//! Точка входа в программу. Запускает обход и отображение
+//! древовидной структуры директорий
+
 mod tree;
 use std::path::Path;
 
 fn main() {
-    tree::display_tree(Path::new("src"));
+    tree::display_tree(Path::new("."));
 }
