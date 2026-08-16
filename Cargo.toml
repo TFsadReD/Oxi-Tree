@@ -1,8 +1,11 @@
 [package]
 name = "oxi-tree"
-version = "1.2.1"
+version = "1.2.2"
 edition = "2024"
+authors = ["TFsadReD"]
 license = "Apache-2.0"
+description = "Консольная утилита для отображения структуры директорий и файлов в виде дерева"
+repository = "https://github.com/TFsadReD/Oxi-Tree"
 
 [dependencies]
 clap = { version = "4.6.6", features = ["derive"] }
