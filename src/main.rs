@@ -4,22 +4,26 @@
 //! древовидной структуры директорий
 
 mod tree;
+mod errors;
+
+use errors::TreeErrors;
+
 use std::env;
 use std::path::Path;
 
-fn main() {
+fn main() -> Result<(), errors::TreeErrors> {
     let path_arg = env::args().nth(1).unwrap_or_else(|| ".".to_string());
     let path = Path::new(&path_arg);
 
     if !path.exists() {
-        eprintln!("Ошибка: путь '{}' не существует!", path.display());
-        std::process::exit(1);
+        return Err(TreeErrors::NotFound(path.to_path_buf()));
     }
 
     if !path.is_dir() {
-        eprintln!("Ошибка: '{}' не является директорией!", path.display());
-        std::process::exit(2);
+        return Err(TreeErrors::NotADirectory(path.to_path_buf()));
     }
 
     tree::display_tree(path);
+
+    Ok(())
 }

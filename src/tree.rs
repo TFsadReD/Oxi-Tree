@@ -26,15 +26,27 @@ pub fn tree_recursive(
     current_depth: usize,
     max_depth: usize,
 ) -> (usize, usize) {
-    let local_dir = fs::read_dir(path).unwrap();
+    let local_dir = match fs::read_dir(path) {
+        Ok(entries) => entries,
+        Err(_) => {
+            eprintln!("{}├── 🚫 [Отказано в доступе]", indent);
+            return (0, 0);
+        }
+    };
 
     let mut dirs = Vec::new();
     let mut files = Vec::new();
 
     for value in local_dir {
-        let value = value.unwrap();
+        let value = match value {
+            Ok(e) => e,
+            Err(_) => continue,
+        };
+        let file_type = match value.file_type() {
+            Ok(ft) => ft,
+            Err(_) => continue,
+        };
         let file_name = value.file_name();
-        let file_type = value.file_type().unwrap();
 
         if file_type.is_dir() {
             dirs.push(file_name);
