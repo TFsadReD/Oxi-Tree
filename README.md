@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>Утилита Oxi-Tree 🌳</h1>
+    <h1>Oxi-Tree 🌳</h1>
 <img src="https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white" alt="Rust" />
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg?style=for-the-badge" alt="License" />
 </div>
