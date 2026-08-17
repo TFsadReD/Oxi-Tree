@@ -5,25 +5,29 @@
 
 mod tree;
 mod errors;
+mod cli;
 
 use errors::TreeErrors;
 
-use std::env;
-use std::path::Path;
+fn main() {
+    if let Err(err) = run() {
+        eprintln!("{}", err);
+        std::process::exit(1);
+    }
+}
 
-fn main() -> Result<(), errors::TreeErrors> {
-    let path_arg = env::args().nth(1).unwrap_or_else(|| ".".to_string());
-    let path = Path::new(&path_arg);
+fn run() -> Result<(), TreeErrors> {
+    let args = cli::parse_arg()?;
 
-    if !path.exists() {
-        return Err(TreeErrors::NotFound(path.to_path_buf()));
+    if !args.path.exists() {
+        return Err(errors::TreeErrors::NotFound(args.path.to_path_buf()));
     }
 
-    if !path.is_dir() {
-        return Err(TreeErrors::NotADirectory(path.to_path_buf()));
+    if !args.path.is_dir() {
+        return Err(errors::TreeErrors::NotADirectory(args.path.to_path_buf()));
     }
 
-    tree::display_tree(path);
+    tree::display_tree(&args.path, args.depth);
 
     Ok(())
 }

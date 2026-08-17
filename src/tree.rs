@@ -6,14 +6,11 @@
 use std::fs;
 use std::path::Path;
 
-/// Максимальная глубина рекурсивного погружения по умолчанию
-const DEFAULT_MAX_DEPTH: usize = 2;
-
 /// Функция запускает рекурсивный поиск папок и файлов по указнному пути
-pub fn display_tree(path: &Path) {
+pub fn display_tree(path: &Path, max_depth: usize) {
     println!("{}", path.display());
 
-    let (total_dirs, total_files) = tree_recursive(path, "", 0, DEFAULT_MAX_DEPTH);
+    let (total_dirs, total_files) = tree_recursive(path, "", 0, max_depth);
 
     println!("└── {} 📁  |  {} 📄", total_dirs, total_files);
 

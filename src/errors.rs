@@ -11,6 +11,7 @@ use std::fmt;
 pub enum TreeErrors {
     NotFound(PathBuf),
     NotADirectory(PathBuf),
+    InvalidDepth(String),
     Io(io::Error),
 }
 
@@ -22,6 +23,9 @@ impl fmt::Display for TreeErrors {
             }
             TreeErrors::NotADirectory(path) => {
                 write!(buffer, "Ошибка: '{}' не является директорией!", path.display())
+            }
+            TreeErrors::InvalidDepth(val) => {
+                write!(buffer, "Ошибка: некорректное значение глубины: '{}' | Ожидается целое положительное число!", val)
             }
             TreeErrors::Io(err) => {
                 write!(buffer, "Ошибка ввода-вывода: {}", err)
