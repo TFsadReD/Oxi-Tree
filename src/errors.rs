@@ -12,6 +12,7 @@ pub enum TreeErrors {
     NotFound(PathBuf),
     NotADirectory(PathBuf),
     InvalidDepth(String),
+    UnknownFlag(String),
     Io(io::Error),
 }
 
@@ -26,6 +27,9 @@ impl fmt::Display for TreeErrors {
             }
             TreeErrors::InvalidDepth(val) => {
                 write!(buffer, "Ошибка: некорректное значение глубины: '{}' | Ожидается целое положительное число!", val)
+            }
+            TreeErrors::UnknownFlag(flag) => {
+                write!(buffer, "Ошибка: неизвестный флаг '{}'. Используйте -h или --help для справки.", flag)
             }
             TreeErrors::Io(err) => {
                 write!(buffer, "Ошибка ввода-вывода: {}", err)
