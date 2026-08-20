@@ -70,7 +70,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     })
 }
 
-///
+/// Парсит значение глубины рекурсии из аргументов командной строки
 fn parse_depth(args: &[String], current_index: usize) -> Result<usize, TreeErrors> {
         if current_index + 1 < args.len() {
         if let Ok(parsed_depth) = args[current_index + 1].parse::<usize>() {

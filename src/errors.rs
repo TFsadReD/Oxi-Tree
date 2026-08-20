@@ -20,19 +20,19 @@ impl fmt::Display for TreeErrors {
     fn fmt(&self, buffer: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             TreeErrors::NotFound(path) => {
-                write!(buffer, "Ошибка: путь '{}' не существует!", path.display())
+                write!(buffer, "Error: path '{}' does not exist!", path.display())
             }
             TreeErrors::NotADirectory(path) => {
-                write!(buffer, "Ошибка: '{}' не является директорией!", path.display())
+                write!(buffer, "Error: '{}' is not a directory!", path.display())
             }
             TreeErrors::InvalidDepth(val) => {
-                write!(buffer, "Ошибка: некорректное значение глубины: '{}' | Ожидается целое положительное число!", val)
+                write!(buffer, "Error: invalid depth value: '{}' | Expected a positive integer!", val)
             }
             TreeErrors::UnknownFlag(flag) => {
-                write!(buffer, "Ошибка: неизвестный флаг '{}'. Используйте -h или --help для справки.", flag)
+                write!(buffer, "Error: unknown flag '{}'. Use -h or --help for help.", flag)
             }
             TreeErrors::Io(err) => {
-                write!(buffer, "Ошибка ввода-вывода: {}", err)
+                write!(buffer, "I/O error: {}", err)
             }
         }
     }
