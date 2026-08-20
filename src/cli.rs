@@ -5,7 +5,7 @@
 
 use crate::errors::TreeErrors;
 
-use std::{env, usize};
+use std::env;
 use std::path::PathBuf;
 
 /// Максимальная глубина рекурсивного погружения по умолчанию
@@ -33,17 +33,9 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     while i < args.len() {
         match args[i].as_str() {
             "-d" | "--depth" => {
-                if i + 1 < args.len() {
-                    if let Ok(parsed_depth) = args[i + 1].parse::<usize>() {
-                        depth = parsed_depth;
-                        i += 2;
-                        continue;
-                    } else {
-                        return Err(TreeErrors::InvalidDepth(args[i + 1].clone()));
-                    }
-                } else {
-                    return Err(TreeErrors::InvalidDepth("значение отсутствует".to_string()));
-                }
+                depth = parse_depth(&args, i)?;
+                i += 2;
+                continue;
             }
 
             "-nd" | "--no-depth" => {
@@ -76,4 +68,28 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
         // show_hidden,
         show_help,
     })
+}
+
+///
+fn parse_depth(args: &[String], current_index: usize) -> Result<usize, TreeErrors> {
+        if current_index + 1 < args.len() {
+        if let Ok(parsed_depth) = args[current_index + 1].parse::<usize>() {
+            Ok(parsed_depth)
+        } else {
+            Err(TreeErrors::InvalidDepth(args[current_index + 1].clone()))
+        }
+    } else {
+        Err(TreeErrors::InvalidDepth("значение отсутствует".to_string()))
+    }
+}
+
+/// Вывод справочной информации по работе утилиты
+pub fn print_help() {
+    println!("Oxi-Tree is a lightweight Rust-written utility for viewing directories and files as a tree\n");
+    println!("Usage: oxi-tree <path> <flags>\n");
+    println!("Flags:");
+    println!("  -d,  --depth <number>     Limit the crawl depth");
+    println!("  -nd, --no-depth           Remove the crawl depth limit");
+    println!("  -a,  --all                Show hidden files and folders");
+    println!("  -h,  --help               Show this help");
 }

@@ -20,7 +20,7 @@ fn run() -> Result<(), TreeErrors> {
     let args = cli::parse_arg()?;
 
     if args.show_help {
-        print_help();
+        cli::print_help();
         return Ok(());
     }
 
@@ -35,14 +35,4 @@ fn run() -> Result<(), TreeErrors> {
     tree::display_tree(&args.path, args.depth);
 
     Ok(())
-}
-
-fn print_help() {
-    println!("Oxi-Tree is a lightweight Rust-written utility for viewing directories and files as a tree\n");
-    println!("Usage: oxi-tree <path> <flags>\n");
-    println!("Flags:");
-    println!("  -d,  --depth <number>     Limit the crawl depth");
-    println!("  -nd, --no-depth           Remove the crawl depth limit");
-    println!("  -a,  --all                Show hidden files and folders");
-    println!("  -h,  --help               Show this help");
 }
