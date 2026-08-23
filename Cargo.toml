@@ -1,11 +1,16 @@
 [package]
 name = "oxi-tree"
-version = "4.3.1"
+version = "4.3.2"
 edition = "2024"
 authors = ["TFsadReD"]
 license = "Apache-2.0"
-description = "Консольная утилита для отображения структуры директорий и файлов в виде дерева"
+description = "A fast and lightweight CLI tool to visualize directory structures"
+
 repository = "https://github.com/TFsadReD/Oxi-Tree"
+readme = "README.md"
+
+keywords = ["cli", "tree", "filesystem", "directory-tree"]
+categories = ["command-line-utilities", "filesystem"]
 
 [dependencies]
 colored = "3.1.1"
