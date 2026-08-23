@@ -14,7 +14,7 @@ const DEFAULT_MAX_DEPTH: usize = 2;
 pub struct Args {
     pub path: PathBuf,
     pub depth: usize,
-    // pub show_hidden: bool,
+    pub show_hidden: bool,
     pub show_help: bool,
 }
 
@@ -24,7 +24,7 @@ pub struct Args {
 pub fn parse_arg() -> Result<Args, TreeErrors> {
     let mut path = PathBuf::from(".");
     let mut depth = DEFAULT_MAX_DEPTH;
-    // let mut show_hidden = false;
+    let mut show_hidden = false;
     let mut show_help = false;
 
     let args: Vec<String> = env::args().collect();
@@ -42,9 +42,9 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
                 depth = usize::MAX;
             }
 
-            // "-a" | "--all" => {
-            //     show_hidden = true;
-            // }
+            "-a" | "--all" => {
+                show_hidden = true;
+            }
 
             "-h" | "--help" => {
                 show_help = true;
@@ -65,7 +65,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     Ok(Args {
         path,
         depth,
-        // show_hidden,
+        show_hidden,
         show_help,
     })
 }

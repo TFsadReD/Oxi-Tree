@@ -32,7 +32,7 @@ fn run() -> Result<(), TreeErrors> {
         return Err(errors::TreeErrors::NotADirectory(args.path.to_path_buf()));
     }
 
-    tree::display_tree(&args.path, args.depth);
+    tree::display_tree(&args);
 
     Ok(())
 }

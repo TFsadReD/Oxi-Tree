@@ -3,25 +3,26 @@
 //! Предоставляет функционал для рекурсивного обхода папок, группировки
 //! элементов по типам, форматированного вывода и подсчёта статистики
 
+use crate::cli::Args;
+
 use std::fs;
 use std::path::Path;
 
 /// Функция запускает рекурсивный поиск папок и файлов по указнному пути
-pub fn display_tree(path: &Path, max_depth: usize) {
-    println!("{}", path.display());
+pub fn display_tree(args: &Args) {
+    println!("{}", args.path.display());
 
-    let (total_dirs, total_files) = tree_recursive(path, "", 0, max_depth);
+    let (total_dirs, total_files) = tree_recursive(&args.path, args, 0, "");
 
     println!("└── {} 📁  |  {} 📄", total_dirs, total_files);
-
 }
 
 /// Внутренняя рекурсивная функция для обхода содержимого директории
 pub fn tree_recursive(
     path: &Path,
-    indent: &str,
+    args: &Args,
     current_depth: usize,
-    max_depth: usize,
+    indent: &str,
 ) -> (usize, usize) {
     let local_dir = match fs::read_dir(path) {
         Ok(entries) => entries,
@@ -45,6 +46,11 @@ pub fn tree_recursive(
         };
         let file_name = value.file_name();
 
+        let name_str = file_name.to_string_lossy();
+        if !args.show_hidden && name_str.starts_with('.') {
+            continue;
+        }
+
         if file_type.is_dir() {
             dirs.push(file_name);
         } else {
@@ -58,15 +64,15 @@ pub fn tree_recursive(
     for dir in &dirs {
         println!("{}├── 📁 {}/", indent, dir.display());
 
-        if current_depth + 1 < max_depth {
+        if current_depth + 1 < args.depth {
             let sub_path = path.join(dir);
             let new_indent = format!("{}│   ", indent);
 
             let (sub_dirs, sub_files) = tree_recursive(
                 &sub_path,
-                &new_indent,
+                args,
                 current_depth + 1,
-                max_depth,
+                &new_indent,
             );
 
             dir_count += sub_dirs;
