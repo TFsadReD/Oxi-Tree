@@ -16,6 +16,7 @@ pub struct Args {
     pub depth: usize,
     pub show_hidden: bool,
     pub show_help: bool,
+    pub dirs_only: bool,
 }
 
 /// Парсит аргументы командной строки для настройки параметров утилиты
@@ -26,6 +27,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     let mut depth = DEFAULT_MAX_DEPTH;
     let mut show_hidden = false;
     let mut show_help = false;
+    let mut dirs_only = false;
 
     let args: Vec<String> = env::args().collect();
     let mut i = 1;
@@ -50,6 +52,10 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
                 show_help = true;
             }
 
+            "-D" | "--dirs-only" => {
+                dirs_only = true;
+            }
+
             flag if flag.starts_with('-') => {
                 return Err(TreeErrors::UnknownFlag(flag.to_string()));
             }
@@ -67,6 +73,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
         depth,
         show_hidden,
         show_help,
+        dirs_only,
     })
 }
 

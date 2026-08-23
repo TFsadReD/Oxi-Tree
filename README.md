@@ -84,7 +84,7 @@ cargo install --path .
 
 ## 🗺️ Roadmap
 
-- [ ] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
+- [x] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
 - [ ] 🏷️ **`-V` / `--version`**: Show current application version
 - [ ] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
 
@@ -170,7 +170,7 @@ cargo install --path .
 
 ## 🗺️ Планы на будущее (Roadmap)
 
-- [ ] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
+- [x] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
 - [ ] 🏷️ **`-V` / `--version`**: Вывод текущей версии утилиты
 - [ ] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
 

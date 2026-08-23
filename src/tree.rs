@@ -14,7 +14,11 @@ pub fn display_tree(args: &Args) {
 
     let (total_dirs, total_files) = tree_recursive(&args.path, args, 0, "");
 
-    println!("└── {} 📁  |  {} 📄", total_dirs, total_files);
+    if args.dirs_only {
+        println!("└── {} 📁", total_dirs);
+    } else {
+        println!("└── {} 📁  |  {} 📄", total_dirs, total_files);
+    }
 }
 
 /// Внутренняя рекурсивная функция для обхода содержимого директории
@@ -53,7 +57,7 @@ pub fn tree_recursive(
 
         if file_type.is_dir() {
             dirs.push(file_name);
-        } else {
+        } else if !args.dirs_only {
             files.push(file_name);
         }
     }
