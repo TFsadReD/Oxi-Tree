@@ -55,6 +55,7 @@
 | `-nd` | `--no-depth` | — | Remove crawl depth limits (unlimited traversal) |
 | `-a` | `--all` | — | Include hidden files and folders (starting with `.`) |
 | `-h` | `--help` | — | Display help information and exit |
+|`-D` | `--dirs-only` | — | Display directories only (hide files) |
 
 ---
 
@@ -143,6 +144,7 @@ Distributed under the **Apache-2.0** License.
 | `-nd` | `--no-depth` | — | Снять ограничение глубины обхода |
 | `-a` | `--all` | — | Отображать скрытые файлы и папки (начинающиеся с `.`) |
 | `-h` | `--help` | — | Показать справочную информацию |
+| `-D` | `--dirs-only` | — | Отображение только папок (без файлов) |
 
 ---
 
