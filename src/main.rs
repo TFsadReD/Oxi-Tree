@@ -24,6 +24,11 @@ fn run() -> Result<(), TreeErrors> {
         return Ok(());
     }
 
+    if args.show_version {
+        cli::print_version();
+        return Ok(());
+    }
+
     if !args.path.exists() {
         return Err(errors::TreeErrors::NotFound(args.path.to_path_buf()));
     }

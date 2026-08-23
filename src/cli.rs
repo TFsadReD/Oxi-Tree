@@ -17,6 +17,7 @@ pub struct Args {
     pub show_hidden: bool,
     pub show_help: bool,
     pub dirs_only: bool,
+    pub show_version: bool,
 }
 
 /// Парсит аргументы командной строки для настройки параметров утилиты
@@ -28,6 +29,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     let mut show_hidden = false;
     let mut show_help = false;
     let mut dirs_only = false;
+    let mut show_version = false;
 
     let args: Vec<String> = env::args().collect();
     let mut i = 1;
@@ -56,6 +58,10 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
                 dirs_only = true;
             }
 
+            "-v" | "--version" => {
+                show_version = true;
+            }
+
             flag if flag.starts_with('-') => {
                 return Err(TreeErrors::UnknownFlag(flag.to_string()));
             }
@@ -74,6 +80,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
         show_hidden,
         show_help,
         dirs_only,
+        show_version,
     })
 }
 
@@ -99,4 +106,10 @@ pub fn print_help() {
     println!("  -nd, --no-depth           Remove crawl depth limits (unlimited traversal)");
     println!("  -a,  --all                Include hidden files and folders (starting with .)");
     println!("  -h,  --help               Display help information and exit");
+    println!("  -D,  --dirs-only          Display directories only (hide files)");
+    println!("  -v,  --version            Show current application version");
+    }
+
+pub fn print_version() {
+    println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"))
 }

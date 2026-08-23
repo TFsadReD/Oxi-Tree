@@ -56,6 +56,7 @@
 | `-a` | `--all` | — | Include hidden files and folders (starting with `.`) |
 | `-h` | `--help` | — | Display help information and exit |
 |`-D` | `--dirs-only` | — | Display directories only (hide files) |
+| `-v` | `--version` | - | Show current application version |
 
 ---
 
@@ -86,7 +87,7 @@ cargo install --path .
 ## 🗺️ Roadmap
 
 - [x] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
-- [ ] 🏷️ **`-V` / `--version`**: Show current application version
+- [x] 🏷️ **`-V` / `--version`**: Show current application version
 - [ ] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
 
 ---
@@ -144,6 +145,7 @@ Distributed under the **Apache-2.0** License.
 | `-a` | `--all` | — | Отображать скрытые файлы и папки (начинающиеся с `.`) |
 | `-h` | `--help` | — | Показать справочную информацию |
 | `-D` | `--dirs-only` | — | Отображение только папок (без файлов) |
+| `-v` | `--version` | - | Вывод текущей версии утилиты |
 
 ---
 
@@ -172,7 +174,7 @@ cargo install --path .
 ## 🗺️ Планы на будущее (Roadmap)
 
 - [x] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
-- [ ] 🏷️ **`-V` / `--version`**: Вывод текущей версии утилиты
+- [x] 🏷️ **`-V` / `--version`**: Вывод текущей версии утилиты
 - [ ] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
 
 ---
