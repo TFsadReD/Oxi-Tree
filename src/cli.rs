@@ -88,8 +88,8 @@ pub fn print_help() {
     println!("Oxi-Tree is a lightweight Rust-written utility for viewing directories and files as a tree\n");
     println!("Usage: oxi-tree <path> <flags>\n");
     println!("Flags:");
-    println!("  -d,  --depth <number>     Limit the crawl depth");
-    println!("  -nd, --no-depth           Remove the crawl depth limit");
-    println!("  -a,  --all                Show hidden files and folders");
-    println!("  -h,  --help               Show this help");
+    println!("  -d,  --depth <number>     Limit directory traversal depth (default: 2)");
+    println!("  -nd, --no-depth           Remove crawl depth limits (unlimited traversal)");
+    println!("  -a,  --all                Include hidden files and folders (starting with .)");
+    println!("  -h,  --help               Display help information and exit");
 }

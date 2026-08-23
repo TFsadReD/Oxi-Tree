@@ -13,7 +13,7 @@ dependencies = [
 
 [[package]]
 name = "oxi-tree"
-version = "4.2.1"
+version = "4.2.2"
 dependencies = [
  "colored",
 ]

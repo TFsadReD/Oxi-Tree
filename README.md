@@ -25,12 +25,14 @@
 * ⚡ **High performance:** fast directory traversal powered by Rust optimizations
 * 📦 **Easy Windows installation:** ready-to-use `.msi` installer that automatically adds the utility to your system `PATH`
 * 🛡️ **Reliable:** minimal dependencies and memory-safe architecture
+* ⚙️ **Flexible CLI configuration:** easily customize execution parameters with built-in command-line arguments
 
 ---
 
 ## 📸 Usage Example
 
 ```bash
+> oxi-tree
 .
 ├── 📁 src/
 │   ├── 📄 main.rs
@@ -42,6 +44,17 @@
 ├── 📄 README.md
 └── 1 📁  |  7 📄
 ```
+
+---
+
+## 🚩 List of Flags
+
+| Short | Long | Parameter | Description |
+| --- | --- | --- | --- |
+| `-d` | `--depth` | `<number>` | Limit directory traversal depth (default: 2) |
+| `-nd` | `--no-depth` | — | Remove crawl depth limits (unlimited traversal) |
+| `-a` | `--all` | — | Include hidden files and folders (starting with `.`) |
+| `-h` | `--help` | — | Display help information and exit |
 
 ---
 
@@ -69,18 +82,11 @@ cargo install --path .
 
 ---
 
-## 💻 Usage
+## 🗺️ Roadmap
 
-* Run in the current directory:
-    ```bash
-    oxi-tree
-    ```
-
-
-* Run for a specific path:
-    ```bash
-    oxi-tree C:\Users\Username
-    ```
+- [ ] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
+- [ ] 🏷️ **`-V` / `--version`**: Show current application version
+- [ ] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
 
 ---
 
@@ -106,12 +112,14 @@ Distributed under the **Apache-2.0** License.
 * ⚡ **Высокая скорость:** быстрый обход файловой системы благодаря оптимизациям Rust
 * 📦 **Простая установка на Windows:** готовый `.msi` инсталлятор, который автоматически добавляет утилиту в системный `PATH`
 * 🛡️ **Надёжность:** минимальное количество зависимостей и безопасная работа с памятью
+* ⚙️ **Гибкая настройка CLI:** гибкая настройка всех параметров выполнения прямо из командной строки
 
 ---
 
 ## 📸 Пример работы
 
 ```bash
+> oxi-tree
 .
 ├── 📁 src/
 │   ├── 📄 main.rs
@@ -123,6 +131,18 @@ Distributed under the **Apache-2.0** License.
 ├── 📄 README.md
 └── 1 📁  |  7 📄
 ```
+
+---
+
+
+## 🚩 Список Флагов
+
+| Короткий | Полный | Параметр | Описание |
+| --- | --- | --- | --- |
+| `-d` | `--depth` | `<число>` | Ограничить глубину обхода директорий (по умолчанию: 2) |
+| `-nd` | `--no-depth` | — | Снять ограничение глубины обхода |
+| `-a` | `--all` | — | Отображать скрытые файлы и папки (начинающиеся с `.`) |
+| `-h` | `--help` | — | Показать справочную информацию |
 
 ---
 
@@ -148,19 +168,11 @@ cargo install --path .
 
 ---
 
-## 💻 Использование
+## 🗺️ Планы на будущее (Roadmap)
 
-- Запуск обхода в текущей папке:
-
-    ```bash
-    oxi-tree
-    ```
-
-- Запуск для указанного пути:
-
-    ```bash
-    oxi-tree C:\Users\Username
-    ```
+- [ ] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
+- [ ] 🏷️ **`-V` / `--version`**: Вывод текущей версии утилиты
+- [ ] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
 
 ---
 
