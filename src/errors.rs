@@ -13,6 +13,7 @@ pub enum TreeErrors {
     NotADirectory(PathBuf),
     InvalidDepth(String),
     UnknownFlag(String),
+    MissingExtensionValue,
     Io(io::Error),
 }
 
@@ -29,10 +30,13 @@ impl fmt::Display for TreeErrors {
                 write!(buffer, "Error: invalid depth value: '{}' | Expected a positive integer!", val)
             }
             TreeErrors::UnknownFlag(flag) => {
-                write!(buffer, "Error: unknown flag '{}'. Use -h or --help for help.", flag)
+                write!(buffer, "Error: unknown flag '{}'! Use -h or --help for help", flag)
             }
             TreeErrors::Io(err) => {
                 write!(buffer, "I/O error: {}", err)
+            }
+            TreeErrors::MissingExtensionValue => {
+                write!(buffer, "Error: missing extension value for -e / --ext flag!")
             }
         }
     }

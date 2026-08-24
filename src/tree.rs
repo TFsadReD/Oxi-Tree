@@ -5,6 +5,7 @@
 
 use crate::cli::Args;
 
+use std::ffi::OsStr;
 use std::fs;
 use std::path::Path;
 
@@ -39,26 +40,21 @@ pub fn tree_recursive(
     let mut dirs = Vec::new();
     let mut files = Vec::new();
 
-    for value in local_dir {
-        let value = match value {
-            Ok(e) => e,
-            Err(_) => continue,
-        };
-        let file_type = match value.file_type() {
+    for entry in local_dir.flatten() {
+        let file_type = match entry.file_type() {
             Ok(ft) => ft,
             Err(_) => continue,
         };
-        let file_name = value.file_name();
-
-        let name_str = file_name.to_string_lossy();
-        if !args.show_hidden && name_str.starts_with('.') {
-            continue;
-        }
+        let file_name = entry.file_name();
 
         if file_type.is_dir() {
-            dirs.push(file_name);
+            if should_include_dir(&file_name, args) {
+                dirs.push(file_name);
+            }
         } else if !args.dirs_only {
-            files.push(file_name);
+            if should_include_file(&file_name, args) {
+                files.push(file_name);
+            }
         }
     }
 
@@ -66,7 +62,7 @@ pub fn tree_recursive(
     let mut file_count = files.len();
 
     for dir in &dirs {
-        println!("{}├── 📁 {}/", indent, dir.display());
+        println!("{}├── 📁 {}/", indent, dir.to_string_lossy());
 
         if current_depth + 1 < args.depth {
             let sub_path = path.join(dir);
@@ -85,8 +81,41 @@ pub fn tree_recursive(
     }
 
     for file in &files {
-        println!("{}├── 📄 {}", indent, file.display());
+        println!("{}├── 📄 {}", indent, file.to_string_lossy());
     }
 
     (dir_count, file_count)
+}
+
+/// Вспомогательная функция: проверяет, нужно ли отображать папку
+fn should_include_dir(dir_name: &OsStr, args: &Args) -> bool {
+    let name_str = dir_name.to_string_lossy();
+    if !args.show_hidden && name_str.starts_with('.') {
+        return false;
+    }
+    true
+}
+
+/// Вспомогательная функция: проверяет, удовлетворяет ли файл всем флагам фильтрации
+fn should_include_file(file_name: &OsStr, args: &Args) -> bool {
+    let name_str = file_name.to_string_lossy();
+
+    if !args.show_hidden && name_str.starts_with('.') {
+        return false;
+    }
+
+    if let Some(ref target_ext) = args.ext {
+        let path = Path::new(file_name);
+
+        match path.extension() {
+            Some(ext) => {
+                if ext.to_string_lossy().to_lowercase() != *target_ext {
+                    return false;
+                }
+            }
+            None => return false,
+        }
+    }
+
+    true
 }

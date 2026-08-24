@@ -18,6 +18,7 @@ pub struct Args {
     pub show_help: bool,
     pub dirs_only: bool,
     pub show_version: bool,
+    pub ext: Option<String>,
 }
 
 /// Парсит аргументы командной строки для настройки параметров утилиты
@@ -30,6 +31,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     let mut show_help = false;
     let mut dirs_only = false;
     let mut show_version = false;
+    let mut ext = None;
 
     let args: Vec<String> = env::args().collect();
     let mut i = 1;
@@ -38,6 +40,12 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
         match args[i].as_str() {
             "-d" | "--depth" => {
                 depth = parse_depth(&args, i)?;
+                i += 2;
+                continue;
+            }
+
+            "-e" | "--ext" => {
+                ext = Some(parse_ext(&args, i)?);
                 i += 2;
                 continue;
             }
@@ -81,12 +89,13 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
         show_help,
         dirs_only,
         show_version,
+        ext,
     })
 }
 
 /// Парсит значение глубины рекурсии из аргументов командной строки
 fn parse_depth(args: &[String], current_index: usize) -> Result<usize, TreeErrors> {
-        if current_index + 1 < args.len() {
+    if current_index + 1 < args.len() {
         if let Ok(parsed_depth) = args[current_index + 1].parse::<usize>() {
             Ok(parsed_depth)
         } else {
@@ -94,6 +103,16 @@ fn parse_depth(args: &[String], current_index: usize) -> Result<usize, TreeError
         }
     } else {
         Err(TreeErrors::InvalidDepth("значение отсутствует".to_string()))
+    }
+}
+
+/// Парсит значение расширения файла из аргументов командной строки
+fn parse_ext(args: &[String], current_index: usize) -> Result<String, TreeErrors> {
+    if current_index + 1 < args.len() {
+        let cleaned_ext = args[current_index + 1].trim_start_matches('.').to_lowercase();
+        Ok(cleaned_ext)
+    } else {
+        Err(TreeErrors::MissingExtensionValue)
     }
 }
 
@@ -108,6 +127,7 @@ pub fn print_help() {
     println!("  -h,  --help               Display help information and exit");
     println!("  -D,  --dirs-only          Display directories only (hide files)");
     println!("  -v,  --version            Show current application version");
+    println!("  -e,  --ext <extension>   Filter files by extension (e.g., -e rs or -e .rs)");
     }
 
 pub fn print_version() {

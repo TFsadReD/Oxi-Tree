@@ -55,8 +55,9 @@
 | `-nd` | `--no-depth` | — | Remove crawl depth limits (unlimited traversal) |
 | `-a` | `--all` | — | Include hidden files and folders (starting with `.`) |
 | `-h` | `--help` | — | Display help information and exit |
-|`-D` | `--dirs-only` | — | Display directories only (hide files) |
+| `-D` | `--dirs-only` | — | Display directories only (hide files) |
 | `-v` | `--version` | — | Show current application version |
+| `-e` | `--ext` | `<extension>` | Filter files by extension (e.g., -e rs or -e .rs) |
 
 ---
 
@@ -87,7 +88,7 @@ cargo install oxi-tree
 
 - [x] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
 - [x] 🏷️ **`-v` / `--version`**: Show current application version
-- [ ] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
+- [x] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
 - [ ] 📊 **`-s` / `--size`**: Display file sizes next to their names
 - [ ] 🔀 **`-S` / `--sort <by>`**: Sort items by parameter (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <file>`**: Save generated directory tree directly to a file
@@ -149,6 +150,7 @@ Distributed under the **Apache-2.0** License.
 | `-h` | `--help` | — | Показать справочную информацию |
 | `-D` | `--dirs-only` | — | Отображение только папок (без файлов) |
 | `-v` | `--version` | — | Вывод текущей версии утилиты |
+| `-e` | `--ext` | `<расширение>` | Фильтровать файлы по расширению (например, -e rs или -e .rs) |
 
 ---
 
@@ -179,7 +181,7 @@ cargo install oxi-tree
 
 - [x] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
 - [x] 🏷️ **`-v` / `--version`**: Вывод текущей версии утилиты
-- [ ] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
+- [x] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
 - [ ] 📊 **`-s` / `--size`**: Отображение размера файлов
 - [ ] 🔀 **`-S` / `--sort <критерий>`**: Сортировка элементов по параметру (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <файл>`**: Сохранение вывода дерева напрямую в файл

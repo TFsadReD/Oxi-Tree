@@ -1,6 +1,6 @@
 [package]
 name = "oxi-tree"
-version = "4.4.3"
+version = "5.0.0"
 edition = "2024"
 authors = ["TFsadReD"]
 license = "Apache-2.0"
