@@ -62,33 +62,36 @@
 
 ## 📥 Installation
 
+### Via Cargo *(Recommended ⭐)*
+
+**Oxi-Tree** is published on [crates.io](https://crates.io/crates/oxi-tree). If you have Rust and Cargo installed, you can install the tool with a single command:
+
+```bash
+cargo install oxi-tree
+```
+
+> ⚠️ **Note:** Installing via Cargo is the **strongly recommended** method. The Windows `.msi` installer may trigger false positive warnings from Windows Defender or antivirus software due to the lack of a paid digital code-signing certificate.
+
 ### Windows (via `.msi` installer)
 
-1. Download the latest `oxi-tree-x86_64.msi` from the [Releases](https://github.com/TFsadReD/Oxi-Tree/releases) page.
+1. Download the latest `oxi-tree-x86_64.msi` from the [Releases](https://www.google.com/search?q=https://github.com/TFsadReD/Oxi-Tree/releases) page.
 2. Run the installer and complete the setup steps.
 3. Open a **new** PowerShell or CMD window and run:
     ```cmd
     oxi-tree
     ```
 
-
-### From Source (via Cargo)
-
-If you have Rust installed:
-
-```bash
-git clone https://github.com/TFsadReD/Oxi-Tree.git
-cd oxi-tree
-cargo install --path .
-```
-
 ---
 
 ## 🗺️ Roadmap
 
 - [x] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
-- [x] 🏷️ **`-V` / `--version`**: Show current application version
+- [x] 🏷️ **`-v` / `--version`**: Show current application version
 - [ ] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
+- [ ] 📊 **`-s` / `--size`**: Display file sizes next to their names
+- [ ] 🔀 **`-S` / `--sort <by>`**: Sort items by parameter (`name`, `size`, `date`, `ext`)
+- [ ] 💾 **`-o` / `--output <file>`**: Save generated directory tree directly to a file
+- [ ] ⚖️ **`-mn` / `--min-size <size>`**, **`-mx` / `--max-size <size>`**: Filter files by size boundaries (e.g., `--min-size 1MB`)
 
 ---
 
@@ -151,31 +154,36 @@ Distributed under the **Apache-2.0** License.
 
 ## 📥 Установка
 
+### Через Cargo (Рекомендуемый способ ⭐)
+
+Утилита опубликована на [crates.io](https://crates.io/crates/oxi-tree). Если у вас установлен Rust и менеджер пакетов Cargo, вы можете установить `oxi-tree` всего одной командой:
+
+```bash
+cargo install oxi-tree
+```
+
+> ⚠️ **Примечание:** Установка через Cargo — это **наиболее предпочтительный способ**. `.msi` инсталлятор для Windows может вызывать ложные срабатывания Windows Defender или других антивирусов из-за отсутствия платной цифровой подписи (Code Signing Certificate).
+
 ### Windows (через `.msi` инсталлятор)
-1. Скачайте последнюю версию `oxi-tree-x86_64.msi` со страницы [Releases](https://github.com/TFsadReD/Oxi-Tree/releases)
+
+1. Скачайте последнюю версию `oxi-tree-x86_64.msi` со страницы [Releases](https://www.google.com/search?q=https://github.com/TFsadReD/Oxi-Tree/releases)
 2. Запустите инсталлятор и пройдите шаги установки
 3. Откройте **новое** окно PowerShell или CMD и введите команду:
     ```cmd
     oxi-tree
     ```
 
-### Из исходников (через Cargo)
-
-Если у вас установлен Rust:
-
-```bash
-git clone https://github.com/TFsadReD/Oxi-Tree.git
-cd oxi-tree
-cargo install --path .
-```
-
 ---
 
 ## 🗺️ Планы на будущее (Roadmap)
 
 - [x] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
-- [x] 🏷️ **`-V` / `--version`**: Вывод текущей версии утилиты
+- [x] 🏷️ **`-v` / `--version`**: Вывод текущей версии утилиты
 - [ ] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
+- [ ] 📊 **`-s` / `--size`**: Отображение размера файлов
+- [ ] 🔀 **`-S` / `--sort <критерий>`**: Сортировка элементов по параметру (`name`, `size`, `date`, `ext`)
+- [ ] 💾 **`-o` / `--output <файл>`**: Сохранение вывода дерева напрямую в файл
+- [ ] ⚖️ **`-mn` / `--min-size <размер>`**, **`-mx` / `--max-size <размер>`**: Фильтрация файлов по размеру (например, `--min-size 1MB`)
 
 ---
 
