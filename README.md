@@ -56,7 +56,7 @@
 | `-a` | `--all` | — | Include hidden files and folders (starting with `.`) |
 | `-h` | `--help` | — | Display help information and exit |
 |`-D` | `--dirs-only` | — | Display directories only (hide files) |
-| `-v` | `--version` | - | Show current application version |
+| `-v` | `--version` | — | Show current application version |
 
 ---
 
@@ -148,7 +148,7 @@ Distributed under the **Apache-2.0** License.
 | `-a` | `--all` | — | Отображать скрытые файлы и папки (начинающиеся с `.`) |
 | `-h` | `--help` | — | Показать справочную информацию |
 | `-D` | `--dirs-only` | — | Отображение только папок (без файлов) |
-| `-v` | `--version` | - | Вывод текущей версии утилиты |
+| `-v` | `--version` | — | Вывод текущей версии утилиты |
 
 ---
 
