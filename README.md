@@ -59,6 +59,7 @@
 | `-v` | `--version` | — | Show current application version |
 | `-e` | `--ext` | `<extension>` | Filter files by extension (e.g., -e rs or -e .rs) |
 | `-U` | `--unsorted` | — | Disable natural sorting (traverse entries as-is for speed) |
+| `-s` | `--size` | — | Display file sizes next to their names |
 
 ---
 
@@ -91,7 +92,7 @@ cargo install oxi-tree
 - [x] 🏷️ **`-v` / `--version`**: Show current application version
 - [x] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
 - [x] ⚡ **`-U` / `--unsorted`**: Disable natural sorting for maximum traversal speed in huge directories
-- [ ] 📊 **`-s` / `--size`**: Display file sizes next to their names
+- [x] 📊 **`-s` / `--size`**: Display file sizes next to their names
 - [ ] 🔀 **`-S` / `--sort <by>`**: Sort items by parameter (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <file>`**: Save generated directory tree directly to a file
 - [ ] ⚖️ **`-mn` / `--min-size <size>`**, **`-mx` / `--max-size <size>`**: Filter files by size boundaries (e.g., `--min-size 1MB`)
@@ -154,6 +155,7 @@ Distributed under the **Apache-2.0** License.
 | `-v` | `--version` | — | Вывод текущей версии утилиты |
 | `-e` | `--ext` | `<расширение>` | Фильтровать файлы по расширению (например, -e rs или -e .rs) |
 | `-U` | `--unsorted` | — | Отключить естественную сортировку (для максимальной скорости) |
+| `-s` | `--size` | — | Отображение размера файлов |
 
 ---
 
@@ -186,7 +188,7 @@ cargo install oxi-tree
 - [x] 🏷️ **`-v` / `--version`**: Вывод текущей версии утилиты
 - [x] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
 - [x] ⚡ **`-U` / `--unsorted`**: Отключение естественной сортировки для максимальной скорости обхода огромных директорий
-- [ ] 📊 **`-s` / `--size`**: Отображение размера файлов
+- [x] 📊 **`-s` / `--size`**: Отображение размера файлов
 - [ ] 🔀 **`-S` / `--sort <критерий>`**: Сортировка элементов по параметру (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <файл>`**: Сохранение вывода дерева напрямую в файл
 - [ ] ⚖️ **`-mn` / `--min-size <размер>`**, **`-mx` / `--max-size <размер>`**: Фильтрация файлов по размеру (например, `--min-size 1MB`)
