@@ -4,9 +4,10 @@
 //! элементов по типам, форматированного вывода и подсчёта статистики
 
 use crate::cli::Args;
+use crate::errors::TreeErrors;
 
-use std::ffi::OsStr;
 use std::fs;
+use std::ffi::OsStr;
 use std::path::Path;
 
 /// Функция запускает рекурсивный поиск папок и файлов по указнному пути
@@ -123,4 +124,30 @@ fn should_include_file(file_name: &OsStr, args: &Args) -> bool {
     }
 
     true
+}
+
+/// Вспомогательная функция: форматирует размер файла или директории в удобочитаемый вид
+/// Преобразует размер в байтах в соответствующие единицы измерения (KB, MB, GB, TB)
+fn format_size(entry: &fs::DirEntry) -> Result<String, TreeErrors> {
+    const KB: u64 = 1024;
+    const MB: u64 = KB * 1024;
+    const GB: u64 = MB * 1024;
+    const TB: u64 = GB * 1024;
+
+    let metadata = entry.metadata()?;
+    let bytes = metadata.len();
+
+    let result = if bytes >= TB {
+        format!("{:.1} TB", bytes as f64 / TB as f64)
+    } else if bytes >= GB {
+        format!("{:.1} GB", bytes as f64 / GB as f64)
+    } else if bytes >= MB {
+        format!("{:.1} MB", bytes as f64 / MB as f64)
+    } else if bytes >= KB {
+        format!("{:.1} KB", bytes as f64 / KB as f64)
+    } else {
+        format!("{} B", bytes)
+    };
+
+    Ok(result)
 }

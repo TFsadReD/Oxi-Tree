@@ -10,6 +10,10 @@ wix
 *.exe
 *.pdb
 
+# >>> Тесты и Примеры <<<
+examples/
+test.rs
+
 # Локальные токены и конфиги Cargo (могут содержать ключи к реестрам)
 .cargo/config.toml
 .cargo/credentials.toml
