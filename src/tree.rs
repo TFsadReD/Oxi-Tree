@@ -58,6 +58,11 @@ pub fn tree_recursive(
         }
     }
 
+    if !args.unsorted {
+        dirs.sort_by(|a, b| natord::compare(&a.to_string_lossy(), &b.to_string_lossy()));
+        files.sort_by(|a, b| natord::compare(&a.to_string_lossy(), &b.to_string_lossy()));
+    }
+
     let mut dir_count = dirs.len();
     let mut file_count = files.len();
 

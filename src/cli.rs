@@ -18,6 +18,7 @@ pub struct Args {
     pub show_help: bool,
     pub dirs_only: bool,
     pub show_version: bool,
+    pub unsorted: bool,
     pub ext: Option<String>,
 }
 
@@ -31,6 +32,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     let mut show_help = false;
     let mut dirs_only = false;
     let mut show_version = false;
+    let mut unsorted = false;
     let mut ext = None;
 
     let args: Vec<String> = env::args().collect();
@@ -70,6 +72,10 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
                 show_version = true;
             }
 
+            "-U" | "--unsorted" => {
+                unsorted = true;
+            }
+
             flag if flag.starts_with('-') => {
                 return Err(TreeErrors::UnknownFlag(flag.to_string()));
             }
@@ -89,6 +95,7 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
         show_help,
         dirs_only,
         show_version,
+        unsorted,
         ext,
     })
 }
@@ -127,7 +134,8 @@ pub fn print_help() {
     println!("  -h,  --help               Display help information and exit");
     println!("  -D,  --dirs-only          Display directories only (hide files)");
     println!("  -v,  --version            Show current application version");
-    println!("  -e,  --ext <extension>   Filter files by extension (e.g., -e rs or -e .rs)");
+    println!("  -e,  --ext <extension>    Filter files by extension (e.g., -e rs or -e .rs)");
+    println!("  -U,  --unsorted           Disable natural sorting (traverse entries as-is for speed)");
     }
 
 pub fn print_version() {

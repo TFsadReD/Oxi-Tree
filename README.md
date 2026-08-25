@@ -58,6 +58,7 @@
 | `-D` | `--dirs-only` | — | Display directories only (hide files) |
 | `-v` | `--version` | — | Show current application version |
 | `-e` | `--ext` | `<extension>` | Filter files by extension (e.g., -e rs or -e .rs) |
+| `-U` | `--unsorted` | — | Disable natural sorting (traverse entries as-is for speed) |
 
 ---
 
@@ -89,6 +90,7 @@ cargo install oxi-tree
 - [x] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
 - [x] 🏷️ **`-v` / `--version`**: Show current application version
 - [x] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
+- [x] ⚡ **`-U` / `--unsorted`**: Disable natural sorting for maximum traversal speed in huge directories
 - [ ] 📊 **`-s` / `--size`**: Display file sizes next to their names
 - [ ] 🔀 **`-S` / `--sort <by>`**: Sort items by parameter (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <file>`**: Save generated directory tree directly to a file
@@ -151,6 +153,7 @@ Distributed under the **Apache-2.0** License.
 | `-D` | `--dirs-only` | — | Отображение только папок (без файлов) |
 | `-v` | `--version` | — | Вывод текущей версии утилиты |
 | `-e` | `--ext` | `<расширение>` | Фильтровать файлы по расширению (например, -e rs или -e .rs) |
+| `-U` | `--unsorted` | — | Отключить естественную сортировку (для максимальной скорости) |
 
 ---
 
@@ -182,6 +185,7 @@ cargo install oxi-tree
 - [x] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
 - [x] 🏷️ **`-v` / `--version`**: Вывод текущей версии утилиты
 - [x] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
+- [x] ⚡ **`-U` / `--unsorted`**: Отключение естественной сортировки для максимальной скорости обхода огромных директорий
 - [ ] 📊 **`-s` / `--size`**: Отображение размера файлов
 - [ ] 🔀 **`-S` / `--sort <критерий>`**: Сортировка элементов по параметру (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <файл>`**: Сохранение вывода дерева напрямую в файл
