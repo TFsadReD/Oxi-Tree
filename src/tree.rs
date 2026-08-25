@@ -68,14 +68,16 @@ pub fn tree_recursive(
     let mut file_count = files.len();
 
     for dir in &dirs {
-        println!("{}├── 📁 {}/", indent, dir.to_string_lossy());
+        let dir_path = path.join(dir);
+        let size_suffix = get_size_suffix(&dir_path, args);
+
+        println!("{}├── 📁 {}/{}", indent, dir.to_string_lossy(), size_suffix);
 
         if current_depth + 1 < args.depth {
-            let sub_path = path.join(dir);
             let new_indent = format!("{}│   ", indent);
 
             let (sub_dirs, sub_files) = tree_recursive(
-                &sub_path,
+                &dir_path,
                 args,
                 current_depth + 1,
                 &new_indent,
@@ -87,7 +89,10 @@ pub fn tree_recursive(
     }
 
     for file in &files {
-        println!("{}├── 📄 {}", indent, file.to_string_lossy());
+        let file_path = path.join(file);
+        let size_suffix = get_size_suffix(&file_path, args);
+
+        println!("{}├── 📄 {}{}", indent, file.to_string_lossy(), size_suffix);
     }
 
     (dir_count, file_count)
@@ -128,13 +133,13 @@ fn should_include_file(file_name: &OsStr, args: &Args) -> bool {
 
 /// Вспомогательная функция: форматирует размер файла или директории в удобочитаемый вид
 /// Преобразует размер в байтах в соответствующие единицы измерения (KB, MB, GB, TB)
-fn format_size(entry: &fs::DirEntry) -> Result<String, TreeErrors> {
+fn format_size(path: &Path) -> Result<String, TreeErrors> {
     const KB: u64 = 1024;
     const MB: u64 = KB * 1024;
     const GB: u64 = MB * 1024;
     const TB: u64 = GB * 1024;
 
-    let metadata = entry.metadata()?;
+    let metadata = fs::metadata(path)?;
     let bytes = metadata.len();
 
     let result = if bytes >= TB {
@@ -150,4 +155,15 @@ fn format_size(entry: &fs::DirEntry) -> Result<String, TreeErrors> {
     };
 
     Ok(result)
+}
+
+fn get_size_suffix(item_path: &Path, args: &Args) -> String {
+    if !args.show_size {
+        return String::new();
+    }
+
+    match format_size(item_path) {
+        Ok(size) => format!(" [{}]", size),
+        Err(_) => " [??? B]".to_string(),
+    }
 }

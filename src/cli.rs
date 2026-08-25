@@ -16,8 +16,9 @@ pub struct Args {
     pub depth: usize,
     pub show_hidden: bool,
     pub show_help: bool,
-    pub dirs_only: bool,
     pub show_version: bool,
+    pub show_size: bool,
+    pub dirs_only: bool,
     pub unsorted: bool,
     pub ext: Option<String>,
 }
@@ -30,8 +31,9 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
     let mut depth = DEFAULT_MAX_DEPTH;
     let mut show_hidden = false;
     let mut show_help = false;
-    let mut dirs_only = false;
     let mut show_version = false;
+    let mut show_size = false;
+    let mut dirs_only = false;
     let mut unsorted = false;
     let mut ext = None;
 
@@ -64,12 +66,16 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
                 show_help = true;
             }
 
-            "-D" | "--dirs-only" => {
-                dirs_only = true;
-            }
-
             "-v" | "--version" => {
                 show_version = true;
+            }
+
+            "-s" | "--size" => {
+                show_size = true;
+            }
+
+            "-D" | "--dirs-only" => {
+                dirs_only = true;
             }
 
             "-U" | "--unsorted" => {
@@ -93,8 +99,9 @@ pub fn parse_arg() -> Result<Args, TreeErrors> {
         depth,
         show_hidden,
         show_help,
-        dirs_only,
         show_version,
+        show_size,
+        dirs_only,
         unsorted,
         ext,
     })
@@ -136,8 +143,10 @@ pub fn print_help() {
     println!("  -v,  --version            Show current application version");
     println!("  -e,  --ext <extension>    Filter files by extension (e.g., -e rs or -e .rs)");
     println!("  -U,  --unsorted           Disable natural sorting (traverse entries as-is for speed)");
+    println!("  -s,  --size               Display file sizes next to their names");
     }
 
+/// Вывод версии утилиты
 pub fn print_version() {
     println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"))
 }
