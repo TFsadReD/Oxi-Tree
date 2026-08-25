@@ -116,7 +116,7 @@ fn parse_depth(args: &[String], current_index: usize) -> Result<usize, TreeError
             Err(TreeErrors::InvalidDepth(args[current_index + 1].clone()))
         }
     } else {
-        Err(TreeErrors::InvalidDepth("значение отсутствует".to_string()))
+        Err(TreeErrors::InvalidDepth("the value is missing".to_string()))
     }
 }
 
