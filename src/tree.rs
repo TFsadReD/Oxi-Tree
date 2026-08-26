@@ -6,6 +6,8 @@
 use crate::cli::Args;
 use crate::errors::TreeErrors;
 
+use ignore::WalkBuilder;
+
 use std::fs;
 use std::ffi::OsStr;
 use std::path::Path;
@@ -30,31 +32,48 @@ pub fn tree_recursive(
     current_depth: usize,
     indent: &str,
 ) -> (usize, usize) {
-    let local_dir = match fs::read_dir(path) {
-        Ok(entries) => entries,
-        Err(_) => {
-            eprintln!("{}├── 🚫 [Отказано в доступе]", indent);
-            return (0, 0);
-        }
-    };
+    let mut builder = WalkBuilder::new(path);
+    let filter_enabled = !args.show_hidden;
+
+    builder
+        .max_depth(Some(1))
+        .hidden(filter_enabled)
+        .git_ignore(filter_enabled)
+        .git_global(filter_enabled)
+        .git_exclude(filter_enabled);
+
+    let walker = builder.build();
 
     let mut dirs = Vec::new();
     let mut files = Vec::new();
 
-    for entry in local_dir.flatten() {
-        let file_type = match entry.file_type() {
-            Ok(ft) => ft,
-            Err(_) => continue,
+    for result in walker {
+        let entry = match result {
+            Ok(e) => e,
+            Err(_) => {
+                eprintln!("{}├── 🚫 [Отказано в доступе]", indent);
+                return (0, 0);
+            }
         };
+
+        if entry.path() == path {
+            continue;
+        }
+
+        let file_type = match entry.file_type() {
+                Some(ft) => ft,
+                None => continue,
+        };
+
         let file_name = entry.file_name();
 
         if file_type.is_dir() {
-            if should_include_dir(&file_name, args) {
-                dirs.push(file_name);
+            if should_include_dir(file_name, args) {
+                dirs.push(file_name.to_os_string());
             }
         } else if !args.dirs_only {
-            if should_include_file(&file_name, args) {
-                files.push(file_name);
+            if should_include_file(file_name, args) {
+                files.push(file_name.to_os_string());
             }
         }
     }
@@ -69,9 +88,8 @@ pub fn tree_recursive(
 
     for dir in &dirs {
         let dir_path = path.join(dir);
-        let size_suffix = get_size_suffix(&dir_path, args);
 
-        println!("{}├── 📁 {}/{}", indent, dir.to_string_lossy(), size_suffix);
+        println!("{}├── 📁 {}/", indent, dir.to_string_lossy());
 
         if current_depth + 1 < args.depth {
             let new_indent = format!("{}│   ", indent);
@@ -109,12 +127,6 @@ fn should_include_dir(dir_name: &OsStr, args: &Args) -> bool {
 
 /// Вспомогательная функция: проверяет, удовлетворяет ли файл всем флагам фильтрации
 fn should_include_file(file_name: &OsStr, args: &Args) -> bool {
-    let name_str = file_name.to_string_lossy();
-
-    if !args.show_hidden && name_str.starts_with('.') {
-        return false;
-    }
-
     if let Some(ref target_ext) = args.ext {
         let path = Path::new(file_name);
 

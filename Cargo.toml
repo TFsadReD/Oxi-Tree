@@ -1,6 +1,6 @@
 [package]
 name = "oxi-tree"
-version = "5.3.4"
+version = "5.4.1"
 edition = "2024"
 authors = ["TFsadReD"]
 license = "Apache-2.0"
@@ -14,4 +14,5 @@ categories = ["command-line-utilities", "filesystem"]
 
 [dependencies]
 colored = "3.1.1"
+ignore = "0.4.33"
 natord = "1.0.9"

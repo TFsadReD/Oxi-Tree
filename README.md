@@ -95,13 +95,13 @@ cargo install oxi-tree
 - [x] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
 - [x] ⚡ **`-U` / `--unsorted`**: Disable natural sorting for maximum traversal speed in huge directories
 - [x] 📊 **`-s` / `--size`**: Display file sizes next to their names
+- [x] 🙈 **`.gitignore` support**: Automatically respect `.gitignore` rules during traversal (overridden by `-a` / `--all`)
 - [ ] 🔀 **`-S` / `--sort <by>`**: Sort items by parameter (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <file>`**: Save generated directory tree directly to a file
 - [ ] ⚖️ **`-mn` / `--min-size <size>`**, **`-mx` / `--max-size <size>`**: Filter files by size boundaries (e.g., `--min-size 1MB`)
 - [ ] 🔤 **`--ascii`**: Use plain ASCII characters for lines (`|--`, `\--`) instead of Unicode characters
 - [ ] 🧩 **`-e` / `--ext <ext1,ext2...>`**: Support multiple file extensions for filtering (e.g., `-e rs,toml,md`)
 - [ ] 🚫 **`--exclude <pattern>`**: Ignore specific files or directories matching patterns (e.g., `--exclude "node_modules|target"`)
-- [ ] 🙈 **`.gitignore` support**: Automatically respect `.gitignore` rules during traversal (overridden by `-a` / `--all`)
 
 ---
 
@@ -195,13 +195,13 @@ cargo install oxi-tree
 - [x] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
 - [x] ⚡ **`-U` / `--unsorted`**: Отключение естественной сортировки для максимальной скорости обхода огромных директорий
 - [x] 📊 **`-s` / `--size`**: Отображение размера файлов
+- [x] 🙈 **Поддержка `.gitignore`**: Учет правил `.gitignore` при обходе (отключается флагом `-a` / `--all`)
 - [ ] 🔀 **`-S` / `--sort <критерий>`**: Сортировка элементов по параметру (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <файл>`**: Сохранение вывода дерева напрямую в файл
 - [ ] ⚖️ **`-mn` / `--min-size <размер>`**, **`-mx` / `--max-size <размер>`**: Фильтрация файлов по размеру (например, `--min-size 1MB`)
 - [ ] 🔤 **`--ascii`**: Использование базовых ASCII-символов (`|--`, `\--`) вместо Unicode-символов
 - [ ] 🧩 **`-e` / `--ext <ext1,ext2...>`**: Поддержка фильтрации по нескольким расширениям одновременно (например, `-e rs,toml,md`)
 - [ ] 🚫 **`--exclude <pattern>`**: Исключение определенных файлов или папок по шаблону (например, `--exclude "node_modules|target"`)
-- [ ] 🙈 **Поддержка `.gitignore**`: Учет правил `.gitignore` при обходе (отключается флагом `-a` / `--all`)
 
 ---
 
