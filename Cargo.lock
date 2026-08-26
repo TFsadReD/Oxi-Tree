@@ -104,7 +104,7 @@ checksum = "308d96db8debc727c3fd9744aac51751243420e46edf401010908da7f8d5e57c"
 
 [[package]]
 name = "oxi-tree"
-version = "5.4.1"
+version = "5.4.2"
 dependencies = [
  "colored",
  "ignore",

@@ -90,12 +90,12 @@ cargo install oxi-tree
 
 ## 🗺️ Roadmap
 
-- [x] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files)
-- [x] 🏷️ **`-v` / `--version`**: Show current application version
-- [x] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`)
-- [x] ⚡ **`-U` / `--unsorted`**: Disable natural sorting for maximum traversal speed in huge directories
-- [x] 📊 **`-s` / `--size`**: Display file sizes next to their names
-- [x] 🙈 **`.gitignore` support**: Automatically respect `.gitignore` rules during traversal (overridden by `-a` / `--all`)
+- [x] 📁 **`-D` / `--dirs-only`**: Display directories only (hide files) `v4.3.0`
+- [x] 🏷️ **`-v` / `--version`**: Show current application version `v4.4.1`
+- [x] 🎯 **`-e` / `--ext <ext>`**: Filter files by specific extension (e.g., `-e rs`) `v5.0.0`
+- [x] ⚡ **`-U` / `--unsorted`**: Disable natural sorting for maximum traversal speed in huge directories `v5.1.0`
+- [x] 📊 **`-s` / `--size`**: Display file sizes next to their names `v5.3.1`
+- [x] 🙈 **`.gitignore` support**: Automatically respect `.gitignore` rules during traversal (overridden by `-a` / `--all`) `v5.4.1`
 - [ ] 🔀 **`-S` / `--sort <by>`**: Sort items by parameter (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <file>`**: Save generated directory tree directly to a file
 - [ ] ⚖️ **`-mn` / `--min-size <size>`**, **`-mx` / `--max-size <size>`**: Filter files by size boundaries (e.g., `--min-size 1MB`)
@@ -190,12 +190,12 @@ cargo install oxi-tree
 
 ## 🗺️ Планы на будущее (Roadmap)
 
-- [x] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов)
-- [x] 🏷️ **`-v` / `--version`**: Вывод текущей версии утилиты
-- [x] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`)
-- [x] ⚡ **`-U` / `--unsorted`**: Отключение естественной сортировки для максимальной скорости обхода огромных директорий
-- [x] 📊 **`-s` / `--size`**: Отображение размера файлов
-- [x] 🙈 **Поддержка `.gitignore`**: Учет правил `.gitignore` при обходе (отключается флагом `-a` / `--all`)
+- [x] 📁 **`-D` / `--dirs-only`**: Отображение только папок (без файлов) `v4.3.0`
+- [x] 🏷️ **`-v` / `--version`**: Вывод текущей версии утилиты `v4.4.1`
+- [x] 🎯 **`-e` / `--ext <расширение>`**: Фильтрация файлов по расширению (например, `-e rs`) `v5.0.0`
+- [x] ⚡ **`-U` / `--unsorted`**: Отключение естественной сортировки для максимальной скорости обхода огромных директорий `v5.1.0`
+- [x] 📊 **`-s` / `--size`**: Отображение размера файлов `v5.3.1`
+- [x] 🙈 **Поддержка `.gitignore`**: Учет правил `.gitignore` при обходе (отключается флагом `-a` / `--all`) `v5.4.1`
 - [ ] 🔀 **`-S` / `--sort <критерий>`**: Сортировка элементов по параметру (`name`, `size`, `date`, `ext`)
 - [ ] 💾 **`-o` / `--output <файл>`**: Сохранение вывода дерева напрямую в файл
 - [ ] ⚖️ **`-mn` / `--min-size <размер>`**, **`-mx` / `--max-size <размер>`**: Фильтрация файлов по размеру (например, `--min-size 1MB`)
